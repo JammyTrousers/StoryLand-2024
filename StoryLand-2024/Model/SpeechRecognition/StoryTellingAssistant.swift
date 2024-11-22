@@ -20,8 +20,11 @@ struct StoryTellingAssistant {
         let voice = AVSpeechSynthesisVoice(language: StoryTeller.shared.lang)
         let utterance = AVSpeechUtterance(string: word)
         utterance.rate = (AVSpeechUtteranceMinimumSpeechRate * 0.2 + AVSpeechUtteranceDefaultSpeechRate * 0.8)
+        //AVSpeechUtteranceDefaultSpeechRate
         utterance.voice = voice
         utterance.volume = 1
+//        utterance.preUtteranceDelay = 0.1
+//        utterance.postUtteranceDelay = 0.0
         utterance.pitchMultiplier = 1.0
         //开始播放
         StoryTellingAssistant.shared.speechSynthesizer.speak(utterance)

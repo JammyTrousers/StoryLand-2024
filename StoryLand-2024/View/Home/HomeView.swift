@@ -18,9 +18,6 @@ struct HomeView: View {
                 Label("Story Telling", systemImage: "ellipsis.message.fill")
             }
             
-            NavigationLink(destination: NewStoryView()) {
-                Label("New Story", systemImage: "square.and.pencil")
-            }
             
             Button {
                 columnVisibility = .all
@@ -32,6 +29,9 @@ struct HomeView: View {
         .buttonStyle(.menu)
         .padding()
         .fixedSize()
+        .onAppear {
+            print("Haha: \(categories.first!.stories)")
+        }
     }
     var body: some View {
         NavigationSplitView(columnVisibility: $columnVisibility) {
@@ -75,7 +75,6 @@ struct HomeView: View {
                     }
             }
         }
-        .navigationTitle("My Home")
     }
 }
 

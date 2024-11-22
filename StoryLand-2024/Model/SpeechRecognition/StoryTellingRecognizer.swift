@@ -83,13 +83,30 @@ class StoryTellingRecognizer {
                 let userInfo = ["text": result.bestTranscription.formattedString]
                 print(result.bestTranscription.formattedString)
                 NotificationCenter.default.post(name: .recognizedString, object: nil, userInfo: userInfo)
-
+                
+                if result.isFinal {
+                    // print("=== isFinal")
+                }
+                
+                /*
+                if result.isFinal {
+                    //ImmersiveCore.printer?.debugPrint(msg: "\(result.bestTranscription.formattedString) - Final")
+                    //print("\(result.bestTranscription.formattedString) - Final")
+                } else {
+                    //ImmersiveCore.printer?.debugPrint(msg: result.bestTranscription.formattedString)
+                    //print("\(result.bestTranscription.formattedString)")
+                }
+                */
  
             } else if let error = error {
                 print(error)
             }
         })
     }
+    
+//    var isRecognizing : Bool {
+//        recognitionTask.is
+//    }
     
     func stopRecognize() {
         audioEngine.stop()

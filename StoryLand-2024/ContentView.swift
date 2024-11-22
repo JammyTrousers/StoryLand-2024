@@ -8,17 +8,17 @@
 import SwiftUI
 
 struct ContentView: View {
+    @StateObject private var navigation = TodayNavigation()
+    
     var body: some View {
-        VStack {
-            Image(systemName: "globe")
-                .imageScale(.large)
-                .foregroundStyle(.tint)
-            Text("Hello, world!")
-        }
-        .padding()
+        HomeView()
+            .environmentObject(navigation)
+            .preferredColorScheme(.light)
     }
 }
 
-#Preview {
-    ContentView()
+struct ContentView_Previews: PreviewProvider {
+    static var previews: some View {
+        ContentView()
+    }
 }

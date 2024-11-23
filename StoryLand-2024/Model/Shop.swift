@@ -11,9 +11,9 @@ import FirebaseFirestore
 struct Shop: Identifiable, Codable {
     @DocumentID var id: String?
     var itemName: String
-    var price: String
+    var price: Int
     
-    init(itemName: String, price: String) {
+    init(itemName: String, price: Int) {
         self.itemName = itemName
         self.price = price
     }

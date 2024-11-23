@@ -6,7 +6,6 @@
 //
 
 import Foundation
-import FirebaseFirestore
 
 var appAllowPartialCorrect = false
 
@@ -27,7 +26,7 @@ struct Story: Identifiable, Codable {
     
     static var list = [Story]()
     
-    @DocumentID var id : String?
+    var id = UUID()
     var name: String
     var content: String
     var coverImage: String

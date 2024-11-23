@@ -46,15 +46,10 @@ struct StorySelectionView: View {
                 }
             }
         }
+        .onAppear {
+            for story in self.stories {
+                print(story.name)
+            }
+        }
     }
-}
-
-#Preview {
-    let stories = [
-        Story.defaultStory(title: .threelittlepigs),
-        Story.defaultStory(title: .threelittlepigs),
-        Story.defaultStory(title: .threelittlepigs),
-        Story.defaultStory(title: .threelittlepigs)
-    ]
-    return StorySelectionView(stories: stories)
 }

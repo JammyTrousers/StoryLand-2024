@@ -89,9 +89,15 @@ struct HomeView: View {
     
     private func loadStories() {
         isLoading = true
-        Database.shared.fetchStories { _ in
+        print("Loading stories...") // Debug log
+            Database.shared.doucmentStoryRead { error in
+            if let error = error {
+                print("Failed to load stories: \(error)")
+            } else {
+                stories = Story.list
+                print("Stories loaded: \(stories.count)") // Debug log
+            }
             isLoading = false
-            stories = Story.list // Update the local state with fetched stories
         }
     }
 }

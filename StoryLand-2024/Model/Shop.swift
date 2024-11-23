@@ -7,10 +7,17 @@
 
 import Foundation
 
-struct Shop: Identifiable {
+struct Shop: Identifiable, Codable {
     var id = UUID()
     var itemName: String
     var price: Int
+    
+    static var list = [Shop]()
+    
+    init(itemName: String, price: Int) {
+        self.itemName = itemName
+        self.price = price
+    }
 }
 
 let shops = [

@@ -42,7 +42,7 @@ struct HomeView: View {
                         Button {
                             columnVisibility = .detailOnly
                         } label: {
-                            Image(systemName: "plus")
+                            Image(systemName: "xmark")
                         }
                     }
                     
@@ -60,7 +60,7 @@ struct HomeView: View {
                         .background(Color.seaBlue)
                         .clipShape(RoundedRectangle(cornerRadius: 25.0))
                     }
-                }
+                }.toolbar(removing: .sidebarToggle)
             } detail: {
                 NavigationStack {
                     UserScene(characterImage: $characterImage)

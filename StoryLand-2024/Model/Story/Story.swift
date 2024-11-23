@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import FirebaseFirestore
 
 var appAllowPartialCorrect = false
 
@@ -26,7 +27,7 @@ struct Story: Identifiable, Codable {
     
     static var list = [Story]()
     
-    var id = UUID()
+    @DocumentID var id : String?
     var name: String
     var content: String
     var coverImage: String
@@ -71,9 +72,9 @@ struct Story: Identifiable, Codable {
     }
 }
 
-let stories = [
-    Story.defaultStory(title: .threelittlepigs)
-]
+//let stories = [
+//    Story.defaultStory(title: .threelittlepigs)
+//]
 
 extension Story {
     static func defaultStory(title: Story.BuildInStory) -> Story {

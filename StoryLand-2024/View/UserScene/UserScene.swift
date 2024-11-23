@@ -9,23 +9,11 @@ import SwiftUI
 
 struct UserScene: View {
     @Binding var characterImage: String
-    var question: Question? = nil
     
     @ViewBuilder
     var character: some View {
-        if let question {
-            Image(characterImage)
-            
-            Text(question.question)
-                .font(.title)
-                .padding()
-                .background(.white)
-                .clipShape(RoundedRectangle(cornerRadius: 18))
-            
-        } else {
-            Image(characterImage)
+        Image(characterImage)
                 .scaledToFit()
-        }
     }
     
     var body: some View {

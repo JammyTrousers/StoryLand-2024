@@ -25,7 +25,7 @@
 	<key>IS_SIGNIN_ENABLED</key>
 	<true></true>
 	<key>GOOGLE_APP_ID</key>
-	<string>1:60989868892:ios:364a235e579d5453280f99</string>
+	<string>1:60989868892:ios:07f6433a1c5577ad280f99</string>
 	<key>DATABASE_URL</key>
 	<string>https://storyland-40133.firebaseio.com</string>
 </dict>

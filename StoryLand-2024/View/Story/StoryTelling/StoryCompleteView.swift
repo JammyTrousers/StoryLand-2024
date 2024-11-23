@@ -18,25 +18,6 @@ struct StoryCompleteView: View {
     @State private var animationsRunning = false
     @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
     
-    @ViewBuilder
-    var hasQuiz: some View {
-        if let question = story.question {
-            NavigationLink(destination: QuizView(quiz: question)) {
-                Label("Start Quiz", systemImage: "pencil.line")
-                    .font(.title)
-                    .bold()
-            }
-        } else {
-            Button {
-                self.presentationMode.wrappedValue.dismiss()
-            } label: {
-                Label("Bye", systemImage: "pencil.line")
-                    .font(.title)
-                    .bold()
-            }
-        }
-    }
-    
     var body: some View {
         NavigationStack {
             VStack(spacing: 60) {
@@ -45,9 +26,7 @@ struct StoryCompleteView: View {
                     .bold()
                 
                 Text("You've completed \(story.name)🎉")
-                    .font(.title3)
-                
-                hasQuiz
+                    .font(.title3)  
             }
         }
         .background(.ultraThinMaterial)

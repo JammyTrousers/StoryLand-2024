@@ -12,7 +12,7 @@ struct HomeView: View {
     @State var characterImage: String = "普通皮膚"
     @State private var columnVisibility = NavigationSplitViewVisibility.detailOnly
     @StateObject private var viewModel = HomeViewModel()
-    
+    @StateObject private var dataManager = DataManager.shared
     
     var buttons: some View {
         VStack(spacing: 40) {
@@ -48,7 +48,7 @@ struct HomeView: View {
                     
                     ToolbarItem(placement: .topBarTrailing) {
                         HStack {
-                            Text("2024")
+                            Text("\(dataManager.userData.token)")
                                 .font(.system(size: 20))
                                 .foregroundStyle(.white)
                             
@@ -63,7 +63,7 @@ struct HomeView: View {
                 }.toolbar(removing: .sidebarToggle)
             } detail: {
                 NavigationStack {
-                    UserScene(characterImage: $characterImage)
+                    UserScene(characterImage: $characterImage, purchased: dataManager.userData.purchasedItems)
                         .ignoresSafeArea()
                         .navigationTitle("My Home")
                         .overlay(alignment: .trailing) {
@@ -102,4 +102,5 @@ struct LoadingView: View {
 #Preview {
     HomeView()
 }
+
 

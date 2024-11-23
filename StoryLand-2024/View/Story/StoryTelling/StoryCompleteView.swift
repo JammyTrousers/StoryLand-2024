@@ -29,10 +29,12 @@ struct StoryCompleteView: View {
                 Text("You've completed \(story.name)🎉")
                     .font(.title3)
                 
+                Text("You got 2 tokens ⭐️")
+                
                 Button(action: {
                     dismiss()
                 }, label: {
-                    Label("Done", systemImage: "chevron.left")
+                    Text("Done")
                 })
                 .buttonStyle(.filled)
                 .frame(maxWidth: .infinity)
@@ -43,6 +45,8 @@ struct StoryCompleteView: View {
             withAnimation {
                 animationsRunning.toggle()
             }
+            
+            DataManager.shared.addToken(token: 2)
         }
     }
 }

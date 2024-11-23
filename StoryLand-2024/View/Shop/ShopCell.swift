@@ -17,19 +17,24 @@ struct ShopCell: View {
                     .resizable()
                     .scaledToFit()
                     .padding()
+                    .frame(width: 200, height: 200)
                 
                 Text(shop.itemName)
             }
             .frame(maxWidth: .infinity)
             
-            HStack {
-                Text("\(shop.price)")
+            Button {
+                DataManager.shared.purchaseItem(item: shop)
+            } label: {
+                HStack {
+                    Text("\(shop.price)")
 
-                Image(systemName: "star.fill")
-                    .font(.system(size: 20))
-                    .foregroundStyle(.yellow)
+                    Image(systemName: "star.fill")
+                        .font(.system(size: 20))
+                        .foregroundStyle(.yellow)
+                }
             }
-            .frame(maxWidth: .infinity)
+            .buttonStyle(.filled)
 
         }
         .clipShape(RoundedRectangle(cornerRadius: 18))

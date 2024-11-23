@@ -9,6 +9,7 @@ import SwiftUI
 
 struct UserScene: View {
     @Binding var characterImage: String
+    var purchased: [String]
     
     @ViewBuilder
     var character: some View {
@@ -16,12 +17,31 @@ struct UserScene: View {
                 .scaledToFit()
     }
     
+    var light: some View {
+        Image("小燈")
+                .scaledToFit()
+    }
+    
+    var bed: some View {
+        Image("床")
+                .scaledToFit()
+    }
+    
     var body: some View {
         GeometryReader { gp in
             VStack(spacing: 0) {
-                VStack {
-                    HStack {
+                VStack(alignment: .center) {
+                    ZStack(alignment: .bottom) {
                         character
+                        
+                        HStack(alignment: .bottom) {
+                            light.opacity(purchased.contains("小燈") ? 1 : 0)
+                            
+                            Spacer()
+                            
+                            bed.opacity(purchased.contains("床") ? 1 : 0)
+                            
+                        }.padding(.horizontal, 10)
                     }
                 }
                 .frame(width: gp.size.width, height: gp.size.height * 0.9, alignment: .bottom)
@@ -33,11 +53,9 @@ struct UserScene: View {
                 .frame(width: gp.size.width, height: gp.size.height * 0.1)
                 .background(Color.floor)
             }
+            .onAppear {
+                print("Purchased items:\(purchased)")
+            }
         }
     }
-}
-
-#Preview {
-    @State var characterImage: String = "普通皮膚"
-    return UserScene(characterImage: $characterImage)
 }

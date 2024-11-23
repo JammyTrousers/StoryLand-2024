@@ -100,7 +100,11 @@ struct StoryTellingView: View {
     var buttons: some View {
         HStack {
             Button {
-                StoryTellingAssistant.shared.speak(word: storyLabel.text ?? "")
+                // Use the fragment content as a fallback if storyLabel.text is empty
+                let textToSpeak = storyLabel.text?.isEmpty ?? true ? storyFragment?.content ?? "No content available" : storyLabel.text!
+                
+                print("Text to speak: \(textToSpeak)") // Debugging
+                StoryTellingAssistant.shared.speak(word: textToSpeak)
             } label: {
                 Label("Listen", systemImage: "speaker.wave.3.fill")
             }
@@ -217,6 +221,9 @@ struct StoryTellingView: View {
         if (stage < fragmentCount) {
             self.storyFragment = self.storyTellingCoordinator?.story.currentFragment
             progress = Float(Double(stage) / Double(fragmentCount - 1))
+            
+            // Update storyLabel.text with the fragment content
+            storyLabel.text = self.storyFragment?.content ?? ""
         }
         
         switch stage {

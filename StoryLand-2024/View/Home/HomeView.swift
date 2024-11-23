@@ -14,7 +14,7 @@ struct HomeView: View {
     
     var buttons: some View {
         VStack(spacing: 40) {
-            NavigationLink(destination: StorySelectionView(stories: categories.first!.stories)) {
+            NavigationLink(destination: StorySelectionView(stories: stories)) {
                 Label("Story Telling", systemImage: "ellipsis.message.fill")
             }
             
@@ -29,9 +29,6 @@ struct HomeView: View {
         .buttonStyle(.menu)
         .padding()
         .fixedSize()
-        .onAppear {
-            print("Haha: \(categories.first!.stories)")
-        }
     }
     var body: some View {
         NavigationSplitView(columnVisibility: $columnVisibility) {

@@ -9,7 +9,7 @@ import SwiftUI
 
 struct StorySelectionView: View {
     
-    var stories = [Story]()
+    var stories : [Story]
     
     private let itemWidth: CGFloat = 550.0
     

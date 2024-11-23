@@ -19,14 +19,22 @@ class Database {
         db.collection("stories")
     }
     
-    func doucmentStoryRead(completion: CompletionHandler) {
-        storyRef.getDocuments { documentSnapshot, error in
-            guard error == nil else { completion?(ErrorHandler.errorDatabase(error: error)); return }
-            guard let documents = documentSnapshot?.documents else { completion?(ErrorHandler.errorDatabase(error: error)); return }
-            Story.list = documents.compactMap { (queryDocumentSnapshot) -> Story? in
+    func documentStoryAddListener(completion: @escaping ([Story]) -> Void) -> ListenerRegistration {
+        return storyRef.addSnapshotListener { querySnapshot, error in
+            if let error = error {
+                print("Error fetching documents: \(error.localizedDescription)")
+                return
+            }
+
+            guard let documents = querySnapshot?.documents else {
+                print("No documents")
+                return
+            }
+
+            let stories = documents.compactMap { queryDocumentSnapshot -> Story? in
                 return try? queryDocumentSnapshot.data(as: Story.self)
             }
-            completion?(nil)
+            completion(stories)
         }
     }
 }

@@ -11,12 +11,11 @@ struct HomeView: View {
     
     @State var characterImage: String = "普通皮膚"
     @State private var columnVisibility = NavigationSplitViewVisibility.detailOnly
-    @State private var stories: [Story] = [] // Use Story.list updated by Database.shared.fetchStories
-    @State private var isLoading: Bool = true // For loading indicator
+    @StateObject private var viewModel = HomeViewModel()
     
     var buttons: some View {
         VStack(spacing: 40) {
-            NavigationLink(destination: StorySelectionView(stories: stories)) {
+            NavigationLink(destination: StorySelectionView(stories: viewModel.stories)) {
                 Label("Story Telling", systemImage: "ellipsis.message.fill")
             }
             
@@ -74,30 +73,10 @@ struct HomeView: View {
                         }
                 }
             }
-            .onAppear {
-                loadStories()
-            }
-            .onDisappear {
-                print("loaded stories: \(stories)")
-            }
             
-            if isLoading {
+            if viewModel.isLoading {
                 LoadingView()
             }
-        }
-    }
-    
-    private func loadStories() {
-        isLoading = true
-        print("Loading stories...") // Debug log
-            Database.shared.doucmentStoryRead { error in
-            if let error = error {
-                print("Failed to load stories: \(error)")
-            } else {
-                stories = Story.list
-                print("Stories loaded: \(stories.count)") // Debug log
-            }
-            isLoading = false
         }
     }
 }

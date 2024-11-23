@@ -13,6 +13,7 @@ struct HomeView: View {
     @State private var columnVisibility = NavigationSplitViewVisibility.detailOnly
     @StateObject private var viewModel = HomeViewModel()
     
+    
     var buttons: some View {
         VStack(spacing: 40) {
             NavigationLink(destination: StorySelectionView(stories: viewModel.stories)) {

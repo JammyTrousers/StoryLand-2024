@@ -17,6 +17,7 @@ struct StoryCompleteView: View {
     
     @State private var animationsRunning = false
     @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
+    @Environment(\.dismiss) private var dismiss
     
     var body: some View {
         NavigationStack {
@@ -26,7 +27,15 @@ struct StoryCompleteView: View {
                     .bold()
                 
                 Text("You've completed \(story.name)🎉")
-                    .font(.title3)  
+                    .font(.title3)
+                
+                Button(action: {
+                    dismiss()
+                }, label: {
+                    Label("Done", systemImage: "chevron.left")
+                })
+                .buttonStyle(.filled)
+                .frame(maxWidth: .infinity)
             }
         }
         .background(.ultraThinMaterial)

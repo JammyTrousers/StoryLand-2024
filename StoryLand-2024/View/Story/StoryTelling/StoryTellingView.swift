@@ -11,6 +11,8 @@ import Speech
 struct StoryTellingView: View {
     @EnvironmentObject private var navigation: TodayNavigation
     
+    @Environment(\.dismiss) private var dismiss
+    
     @State var storyFragment: StoryFragment? = nil
     @State var storyTellingCoordinator: StoryTellingController?
     
@@ -158,7 +160,9 @@ struct StoryTellingView: View {
             }
         }
         .toolbar(.hidden, for: .navigationBar)
-        .sheet(isPresented: $navigation.showSheet) {
+        .sheet(isPresented: $navigation.showSheet, onDismiss: {
+            dismiss()
+        }) {
             StoryCompleteView(story: story, score: score)
         }
         .alert(isPresented: $isAlert) {

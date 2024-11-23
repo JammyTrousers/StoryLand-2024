@@ -172,6 +172,8 @@ struct StoryTellingView: View {
             self.storyTellingCoordinator = StoryTellingController(story: self.story)
             self.storyTellingCoordinator?.delegate = self
             
+            self.storyTellingCoordinator?.startStoryTelling()
+            
             updateContent()
         }
         .onDisappear {

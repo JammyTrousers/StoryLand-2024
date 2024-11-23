@@ -46,10 +46,8 @@ struct StorySelectionView: View {
                 }
             }
         }
-        .onAppear {
-            for story in self.stories {
-                print(story.name)
-            }
+        .background {
+            Image("Background")
         }
     }
 }

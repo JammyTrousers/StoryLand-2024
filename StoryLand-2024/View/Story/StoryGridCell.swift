@@ -30,12 +30,6 @@ struct StoryGridCell: View {
         }
         .overlay {
             ZStack(alignment: .bottom) {
-                Image("Background")
-                    .resizable()
-                    .blur(radius: 20) /// blur the image
-                    .padding(-20) /// expand the blur a bit to cover the edges
-                    .clipped() /// prevent blur overflow
-                    .mask(gradient) /// mask the blurred image using the gradient's alpha values
                 
                 gradient /// also add the gradient as an overlay (this time, the purple will show up)
                 

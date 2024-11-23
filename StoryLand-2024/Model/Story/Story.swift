@@ -49,6 +49,7 @@ struct Story: Identifiable, Codable {
     }
 
     mutating func setup() {
+        self.contents.removeAll()
         let fragments = content.components(separatedBy: "-")
         for fragment in fragments {
             var fragment = StoryFragment(content: fragment)

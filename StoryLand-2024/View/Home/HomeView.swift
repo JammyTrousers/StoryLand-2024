@@ -34,7 +34,7 @@ struct HomeView: View {
         ZStack {
             NavigationSplitView(columnVisibility: $columnVisibility) {
                 VStack {
-                    ShopView()
+                    ShopView(shops: viewModel.shops)
                 }
                 .toolbar {
                     ToolbarItem(placement: .topBarLeading) {

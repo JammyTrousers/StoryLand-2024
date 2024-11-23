@@ -24,8 +24,6 @@ struct Story: Identifiable, Codable {
         case threelittlepigs
     }
     
-    static var list = [Story]()
-    
     var id = UUID()
     var name: String
     var content: String

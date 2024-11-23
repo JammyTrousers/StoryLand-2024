@@ -19,6 +19,10 @@ class Database {
         db.collection("stories")
     }
     
+    private var shopRef: CollectionReference {
+        db.collection("shopItems")
+    }
+    
     func documentStoryAddListener(completion: @escaping ([Story]) -> Void) -> ListenerRegistration {
         return storyRef.addSnapshotListener { querySnapshot, error in
             if let error = error {
@@ -35,6 +39,28 @@ class Database {
                 return try? queryDocumentSnapshot.data(as: Story.self)
             }
             completion(stories)
+        }
+    }
+    
+    func documentShopAddListener(completion: @escaping ([Shop]) -> Void) -> ListenerRegistration {
+        return shopRef.addSnapshotListener { querySnapshot, error in
+            if let error = error {
+                print("Error fetching documents: \(error.localizedDescription)")
+                return
+            }
+
+            guard let documents = querySnapshot?.documents else {
+                print("No documents")
+                return
+            }
+
+            let shops = documents.compactMap { queryDocumentSnapshot -> Shop? in
+                return try? queryDocumentSnapshot.data(as: Shop.self)
+            }
+            
+            print("got shops: \(shops.count)")
+            
+            completion(shops)
         }
     }
 }

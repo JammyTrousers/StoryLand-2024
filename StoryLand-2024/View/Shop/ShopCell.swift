@@ -37,6 +37,4 @@ struct ShopCell: View {
     }
 }
 
-#Preview {
-    ShopCell(shop: Shop(itemName: "小鴨皮膚", price: 1))
-}
+

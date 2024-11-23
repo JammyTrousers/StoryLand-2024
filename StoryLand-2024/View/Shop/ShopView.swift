@@ -8,6 +8,8 @@
 import SwiftUI
 
 struct ShopView: View {
+    var shops: [Shop]
+    
     var body: some View {
         ScrollView(.vertical, showsIndicators: false) {
             ForEach(shops) { shop in
@@ -15,8 +17,4 @@ struct ShopView: View {
             }
         }
     }
-}
-
-#Preview {
-    ShopView()
 }

@@ -6,22 +6,15 @@
 //
 
 import Foundation
+import FirebaseFirestore
 
 struct Shop: Identifiable, Codable {
-    var id = UUID()
+    @DocumentID var id: String?
     var itemName: String
-    var price: Int
+    var price: String
     
-    static var list = [Shop]()
-    
-    init(itemName: String, price: Int) {
+    init(itemName: String, price: String) {
         self.itemName = itemName
         self.price = price
     }
 }
-
-let shops = [
-    Shop(itemName: "小鴨皮膚", price: 1),
-    Shop(itemName: "小鴨皮膚", price: 1),
-    Shop(itemName: "小鴨皮膚", price: 1)
-]

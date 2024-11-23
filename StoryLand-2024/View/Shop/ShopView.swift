@@ -14,7 +14,9 @@ struct ShopView: View {
         ScrollView(.vertical, showsIndicators: false) {
             ForEach(shops) { shop in
                 ShopCell(shop: shop)
+                    .padding()
             }
         }
+        .background(Image("Background"))
     }
 }

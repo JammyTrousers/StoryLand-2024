@@ -38,7 +38,6 @@ struct ShopCell: View {
 
         }
         .clipShape(RoundedRectangle(cornerRadius: 18))
-        .padding()
     }
 }
 
